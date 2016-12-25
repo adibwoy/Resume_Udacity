@@ -3,37 +3,37 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 
 var bio = {
-    name: "Aditya Bhandari",
-    role: "Web Developer",
+    name: "Jane Doe",
+    role: "Web Designer",
     contact: {
         mobile: "xxx-xxx-xxx",
-        email: "arb492@nyu.edu",
-        github: "adityarb88",
-        twitter: "adityarb",
+        email: "jane.doe@example.com",
+        github: "janedoe",
+        twitter: "janedoe",
         location: "Jersey City"
     },
     bioPic: "images/fry.jpg",
     welcomeMessage: "Welcome!",
     skills: [
-        "HTML","CSS","Javscript"
+        "HTML","CSS","Sketch","Adobe Photoshop"
     ]
 }
 
 var education = {
     "schools": [
         {
-            "name": "NYU",
+            "name": "Parsons School of Design",
             "location": "NYC",
-            "degree": "Masters",
-            "majors": ["CS"],
+            "degree": "MA",
+            "majors": ["Design"],
             "dates": 2013,
             "url": "http://www.example.com"
         },
         {
-            "name": "PICT",
+            "name": "Parsons School of Design",
             "location": "Pune",
-            "degree": "Bachelors",
-            "majors": ["CS"],
+            "degree": "BFA",
+            "majors": ["Product Design"],
             "dates": 2010,
             "url": "http://www.example.com"
         }
@@ -51,18 +51,18 @@ var education = {
 var work = {
     "jobs": [
         {
-            "employer": "IBM",
-            "title": "Systems Engineer",
+            "employer": "Time Inc.",
+            "title": "Senior Designer",
             "location": "New York",
-            "dates": "Jun 2010 - Dec 2010",
-            "description": "lorem ipsum"
+            "dates": "March 2013 - July 2015",
+            "description": "Produced web, motion, print, outdoor, and digital sales and marketing promotion materials. Created contemporary, thoughtful, intuitive and memorable UI and marketing assets using color, iconography, typography, balance, and priority. Produced digital assets and layout specifications for brands across Time Inc sports properties including Sports Illustrated, Golf, Fansided, and SI Kids. Led individual projects from concept to completion, in parallel with other projects while maintaining a flexible process"
         },
         {
-            "employer": "Barclays",
-            "title": "Technology Analyst",
+            "employer": "Facebook",
+            "title": "Visual Designer",
             "location": "New York",
-            "dates": "March 2013 - July 2014",
-            "description": "lorem ipsum"
+            "dates": "Aug 2015 - Present",
+            "description": "Inspired our clients with a vision for their brand, game-changing ideas and plans to get them executed. Drove brand and business strategy discussions to uncover huge business needs and opportunities. Uncovered social insights and develop Facebook solutions that drive the key business goals of our top clients. Partnered with others on the team to make your and their ideas shine. Worked with Product and Engineering to refine your ideas for maximum impact on the Facebook Platform"
         }
     ]
 }
@@ -70,12 +70,11 @@ var work = {
 var projects = {
     "projects": [
         {
-            "title": "Project 1",
+            "title": "Vintage Stamp Icon Set",
             "dates": "2013",
-            "description": "lorem ipsum",
+            "description": "A different take on Icons",
             "images": [
-                "http://placehold.it/50x50",
-                "http://placehold.it/50x50"
+                "images/iconset.jpg"
             ]
         }
     ]
@@ -84,6 +83,15 @@ var projects = {
 bio.display = function() {
     var formattedName = HTMLheaderName.replace("%data%",bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
+
+    var contactKeys = Object.keys(bio.contact);
+
+    for(var i=0; i<contactKeys.length; i++) {
+        var formattedContact = HTMLcontactGeneric.replace("%contact%",contactKeys[i]);
+        formattedContact = formattedContact.replace("%data%",bio.contact[contactKeys[i]]);
+        $('#topContacts').append(formattedContact);
+    }
+
     var formattedBioPic = HTMLbioPic.replace("%data%",bio.bioPic);
 
     $('#header').prepend(formattedRole);
