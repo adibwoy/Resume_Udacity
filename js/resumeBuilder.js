@@ -3,16 +3,16 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 
 var bio = {
-    name: "Jane Doe",
+    name: "John Doe",
     role: "Web Designer",
     contact: {
-        mobile: "xxx-xxx-xxx",
-        email: "jane.doe@example.com",
-        github: "janedoe",
-        twitter: "janedoe",
+        mobile: "999-999-999",
+        email: "john.doe@example.com",
+        github: "johndoe",
+        twitter: "johndoe",
         location: "Jersey City"
     },
-    bioPic: "images/fry.jpg",
+    bioPic: "images/fry.png",
     welcomeMessage: "Welcome!",
     skills: [
         "HTML","CSS","Sketch","Adobe Photoshop"
@@ -31,7 +31,7 @@ var education = {
         },
         {
             "name": "Parsons School of Design",
-            "location": "Pune",
+            "location": "NYC",
             "degree": "BFA",
             "majors": ["Product Design"],
             "dates": 2010,
@@ -81,22 +81,21 @@ var projects = {
 }
 
 bio.display = function() {
+    var formattedBioPic = HTMLbioPic.replace("%data%",bio.bioPic);
     var formattedName = HTMLheaderName.replace("%data%",bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
 
     var contactKeys = Object.keys(bio.contact);
 
+    $('#myInfo').prepend(formattedRole);
+    $('#myInfo').prepend(formattedName);
+    $('#myInfo').prepend(formattedBioPic);
+
     for(var i=0; i<contactKeys.length; i++) {
-        var formattedContact = HTMLcontactGeneric.replace("%contact%",contactKeys[i]);
+        var formattedContact = HTMLcontactGeneric.replace("%contact%",contactKeys[i] + ": ");
         formattedContact = formattedContact.replace("%data%",bio.contact[contactKeys[i]]);
         $('#topContacts').append(formattedContact);
     }
-
-    var formattedBioPic = HTMLbioPic.replace("%data%",bio.bioPic);
-
-    $('#header').prepend(formattedRole);
-    $('#header').prepend(formattedName);
-    $('#header').append(formattedBioPic);
 
     $("#header").append(HTMLskillsStart);
     bio.skills.forEach(function(skill) {
@@ -189,3 +188,5 @@ projects.display = function() {
 };
 
 projects.display();
+
+$("#mapDiv").append(googleMap);
