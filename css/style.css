@@ -111,6 +111,7 @@ sub {
 
 .my-info,
 #topContacts,
+#footerContacts,
 #skills,
 #workExperience,
 .work-entry,
@@ -153,7 +154,8 @@ sub {
     border-radius: 50%;
 }
 
-#topContacts {
+#topContacts,
+#footerContacts {
 
     /* Display */
     flex-direction: row;
@@ -166,6 +168,7 @@ sub {
     list-style: none;
 }
 
+#footerContacts > .contact-item,
 #topContacts > .contact-item {
     white-space: nowrap;
     padding: 6px 4%;
